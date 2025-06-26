@@ -5,9 +5,13 @@ from django.views import View
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
 import telebot
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Создаем объект бота
-bot = telebot.TeleBot('8132754714:AAFcGEbXvcEL-vbfu6AZr4lUT6GmdLbBguk')
+bot = telebot.TeleBot(os.getenv('TG_TOKEN'))
 
 # Create your views here.
 # Главная страница
