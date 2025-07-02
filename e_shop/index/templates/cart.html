@@ -33,16 +33,18 @@
         <h2 class="pb-2 border-bottom text-white">Ваша корзина"</i></h2>
             {% for i in cart %}
             <div class="container">
-                <img src="{{ iuser_product.product_photo.url }}" width="400" height="400" alt="{{ p }}">
+                <img src="{{ i.user_product.product_photo.url }}" width="400" height="400" alt="{{ p }}">
                 <h3 class="fs-2 text-white">{{ i.user_product }}</h3>
                 <h2>Количество: </h2>
                 <form action="/del-from-cart/{{ i.user_product.id }}" method="post">
+                    {% csrf_token %}
                     <button type="submit" class="btn btn-warning">Удалить</button>
                 </form>
             </div>
             {% endfor %}
         <h2 class="text-white">Итого: ${{ total }}</h2>
         <form method="post">
+            {% csrf_token %}
             <button type="submit" class="btn btn-success btn-lg">Оформить заказ</button>
         </form>
     </div>

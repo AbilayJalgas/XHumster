@@ -123,7 +123,7 @@ def del_from_cart(request, pk):
 # Отображение корзины
 def show_cart(request):
     user_cart = Cart.objects.filter(user_id=request.user.id)
-    totals = [round(t.user_product.product_price * t.user_pr_ammount, 2) for t in user_cart]
+    totals = [round(t.user_product.product_price * t.user_pr_amount, 2) for t in user_cart]
 
     context = {
         'cart': user_cart,
@@ -143,7 +143,7 @@ def show_cart(request):
                      f'Количество: {i.user_pr_amount}\n'
                      f'--------------------------------------\n')
 
-        text += f'Итого: {round(sum(totals, 2))}'
+        text += f'Итого: ${round(sum(totals, 2))}'
         bot.send_message(645720088, text)
         user_cart.delete()
         return redirect('/')
